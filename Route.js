@@ -27,7 +27,8 @@ var Storage=Multer.diskStorage({
 })
 var Upload=Multer({storage:Storage})
 Router_001.get('/',(request_001,response_001)=>{
-    response_001.render('Home',{message_002:0,emailID:null,Username:null}).end()
+    response_001.render('Home',{message_002:0,emailID:null,Username:null})
+    response_001.end()
 })
 Router_001.use('/New_user',urlEncoded,(request_001,response_001)=>{
     Authenticate.NewUser(request_001,response_001)
