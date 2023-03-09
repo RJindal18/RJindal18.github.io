@@ -2,10 +2,10 @@
   "name": "e-commerce",
   "version": "1.0.0",
   "description": "",
-  "main": "Start.js",
+  "main": "start.js",
   "scripts": {
     "start": "node Start.js",
-    "dev": "nodemon Start.js"
+    "dev": "nodemon start.js"
   },
   "keywords": [],
   "author": "",
