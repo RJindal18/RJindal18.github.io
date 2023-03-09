@@ -1,0 +1,278 @@
+<%- include ('Customer header.ejs') %>
+		<style>
+			body{
+				background:#eee;
+				margin-top:20px;
+			}
+			.text-danger strong{
+				color: #9f181c;
+				}
+			.receipt-main{
+				background: #ffffff none repeat scroll 0 0;
+				border-bottom: 12px solid #333333;
+				border-top: 12px solid #9f181c;
+				margin-top: 50px;
+				margin-bottom: 50px;
+				padding: 40px 30px !important;
+				position: relative;
+				box-shadow: 0 1px 21px #acacac;
+				color: #333333;
+				font-family: open sans;
+			}
+			.receipt-main p{
+				color: #333333;
+				font-family: open sans;
+				line-height: 1.42857;
+			}
+			.receipt-footer h1{
+				font-size: 15px;
+				font-weight: 400 !important;
+				margin: 0 !important;
+			}
+			.receipt-main::after{
+				background: #414143 none repeat scroll 0 0;
+				content: "";
+				height: 5px;
+				left: 0;
+				position: absolute;
+				right: 0;
+				top: -13px;
+			}
+			.receipt-main thead{
+				background: #414143 none repeat scroll 0 0;
+			}
+			.receipt-main thead th{
+				color:#fff;
+			}
+			.receipt-right h5{
+				font-size: 16px;
+				font-weight: bold;
+				margin: 0 0 7px 0;
+			}
+			.receipt-right p{
+				font-size: 12px;
+				margin: 0px;
+			}
+			.receipt-right p i{
+				text-align: center;
+				width: 18px;
+			}
+			.receipt-main td{
+				padding: 9px 20px !important;
+			}
+			.receipt-main th{
+				padding: 13px 20px !important;
+			}
+			.receipt-main td{
+				font-size: 13px;
+				font-weight: initial !important;
+			}
+			.receipt-main td p:last-child{
+				margin: 0;
+				padding: 0;
+			}	
+			.receipt-main td h2{
+				font-size: 20px;
+				font-weight: 900;
+				margin: 0;
+				text-transform: uppercase;
+			}
+			.receipt-header-mid .receipt-left h1{
+				font-weight: 100;
+				margin: 34px 0 0;
+				text-align: right;
+				text-transform: uppercase;
+			}
+			.receipt-header-mid{
+				margin: 24px 0;
+				overflow: hidden;
+			}
+			#container{
+				background-color: #dcdcdc;
+			}
+		</style>
+        <div class="col-md-9 offset-md-2">
+            <div class="row">
+                <div class="receipt-main col-xs-10 col-sm-10 col-md-10 col-xs-offset-1 col-sm-offset-1 col-md-offset-1">
+                    <div class="row">
+                        <div class="col-xs-11 col-sm-11 col-md-11 offset-md-1">
+                            <div class="receipt-left" style="float: right;">
+                                <h5><b>INVOICE #:</b>
+                                    <script>
+                                        var BillNow=new Date();
+                                        var FY=BillNow.getFullYear().toString();
+                                        var Mh=BillNow.getMonth();
+                                        var Mt=(Mh+1).toString();
+                                        var Dt=BillNow.getDate().toString();
+                                        var Hr=BillNow.getHours().toString();
+                                        var Mn=BillNow.getMinutes().toString();
+                                        var Sc=BillNow.getSeconds().toString();
+                                        var Ms=BillNow.getMilliseconds().toString();
+                                        var BillNo=FY+'/'+Mt+'/'+Dt+'/'+Hr+'/'+Mn+'/'+Sc+'/'+Ms;
+                                        document.write('<u><i>'+BillNo+'</i></u>');
+                                    </script>
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="receipt-header">
+                            <div class="col-xs-1 col-sm-1 col-md-1" style="float: left;margin-right: 10px;">
+                                <div class="receipt-left">
+                                    <img class="img-responsive" alt="SaviRaj Corporation"
+                                        src="../Public/Images/SaviRaj.png"
+                                        style="height: 80px; border-radius: 10px;">
+                                </div>
+                            </div>
+                            <div class="col-xs-7 col-sm-7 col-md-7 text-left">
+                                <div class="receipt-right">
+                                    <h5>SaviRaj Corporation</h5>
+                                    <p><i class="fa fa-phone">+91 98772-39299</i></p>
+                                    <p><i class="fa fa-envelope-o">SaviRaj@ymail.com</i></p>
+                                    <p><i class="fa fa-location-arrow">Patiala, Punjab (India)</i></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="receipt-header receipt-header-mid">
+                        <div class="col-xs-4 col-sm-4 col-md-4 offset-md-8 text-right">
+                            <div class="receipt-right">
+                                <h5>Customer Details</h5>
+                                <p><b>Name: </b><%= CustomerData[0].Name %></p>
+                                <p><b>Mobile: </b><%= CustomerData[0].Mobile_No %></p>
+                                <p><b>e-mail: </b><%= CustomerData[0].eMail_ID %></p>
+                                <p><b>Address: </b><%= CustomerData[0].Address %> (<%= CustomerData[0].State %>)</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Product ID</th>
+                                    <th>Description</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="col-md-1"><%= PID %></td>
+                                    <td class="col-md-4">
+                                        <img src="../Assets/My uploads/<%= PImage %>" alt="<%= PName %>" height="100px" style="float: left; margin-right: 10px;">
+                                        <div>
+                                            <p><%= PName %></p>
+                                            <p><%= PType %></p>
+                                        </div>
+                                    </td>
+                                    <td class="col-md-1"><%= PPrice %></td>
+                                    <td class="col-md-1"><%= PQty %> units</td>
+                                    <td class="col-md-1"><i class="fa fa-inr"><%= PFinalPrice %> USD</i></td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-1">---</td>
+                                    <td class="col-md-4">---</td>
+                                    <td class="col-md-1">---</td>
+                                    <td class="col-md-1">---</td>
+                                    <td class="col-md-1"><i class="fa fa-inr">---</i></td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-1">---</td>
+                                    <td class="col-md-4">---</td>
+                                    <td class="col-md-1">---</td>
+                                    <td class="col-md-1">---</td>
+                                    <td class="col-md-1"><i class="fa fa-inr">---</i></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-right" colspan="4">
+                                        <p>
+                                            <strong>Total Amount: </strong>
+                                        </p>
+                                        <p>
+                                            <strong>Late Fees: </strong>
+                                        </p>
+                                        <p>
+                                            <strong>Payable Amount: </strong>
+                                        </p>
+                                        <p>
+                                            <strong>Balance Due: </strong>
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <p>
+                                            <strong><i class="fa fa-inr"><%= PFinalPrice %> USD</i></strong>
+                                        </p>
+                                        <p>
+                                            <strong><i class="fa fa-inr">N/A</i></strong>
+                                        </p>
+                                        <p>
+                                            <strong><i class="fa fa-inr"><%= PFinalPrice %> USD</i></strong>
+                                        </p>
+                                        <p>
+                                            <strong><i class="fa fa-inr"><%= PFinalPrice %> USD</i></strong>
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-right" colspan="4">
+                                        <h4><strong>Total: </strong></h4>
+                                    </td>
+                                    <td class="text-left text-danger">
+                                        <h5><strong><i class="fa fa-inr"><%= PFinalPrice %> USD</i></strong></h5>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="receipt-header receipt-header-mid receipt-footer">
+                            <div class="col-xs-8 col-sm-8 col-md-8 text-left">
+                                <div class="receipt-right">
+                                    <p><b>Date:</b>
+                                        <script>
+                                            var Billing=new Date();
+                                            var BillDate=Billing.toDateString();
+                                            document.write('<u><i>'+BillDate+'</i></u>');
+                                        </script>
+                                    </p>
+                                    <h5 style="color: rgb(140, 140, 140);">Thanks for shopping.!</h5>
+                                </div>
+                            </div>
+                            <div class="col-xs-4 col-sm-4 col-md-4">
+                                <div class="receipt-left">
+                                    <h1><img src="../Public/Images/Stamp.jpg" height="100px"></h1>
+                                </div>
+                            </div>
+                            <h1><img class="offset-md-7" src="../Public/Images/Signature.png" height="100px" width="300px"></h1>
+                            <div class="text-center"><br>
+                                <form action="/Pay_now" method="post">
+                                    <input type="hidden" name="PayingID" value="<%= PID %>">
+                                    <input type="hidden" name="PayingName" value="<%= PName %>">
+                                    <input type="hidden" name="PayingType" value="<%= PType %>">
+                                    <input type="hidden" name="PayingPrice" value="<%= PFinalPrice %>">
+                                    <input type="hidden" name="PayingQty" value="<%= PQty %>">
+                                    <input type="hidden" name="PayingMobile" value="<%= CustomerData[0].Mobile_No %>">
+                                    <input type="hidden" name="PayingAddress" value="<%= CustomerData[0].Address %> (<%= CustomerData[0].State %>)">
+                                    <button class="btn btn-danger">Proceed for Payment</button>
+                                </form><br><br>
+                                <h1 style="font-size: xx-large;"><b>or</b></h1><br><br>
+                                <form action="/Payram_now" method="post">
+                                    <input type="hidden" name="PayingID" value="<%= PID %>">
+                                    <input type="hidden" name="PayingName" value="<%= PName %>">
+                                    <input type="hidden" name="PayingType" value="<%= PType %>">
+                                    <input type="hidden" name="PayingPrice" value="<%= PFinalPrice %>">
+                                    <input type="hidden" name="PayingQty" value="<%= PQty %>">
+                                    <input type="hidden" name="PayingMobile" value="<%= CustomerData[0].Mobile_No %>">
+                                    <input type="hidden" name="PayingAddress" value="<%= CustomerData[0].Address %>">
+                                    <input type="hidden" name="PayingState" value="<%= CustomerData[0].State %>">
+                                    <button class="btn btn-danger">Proceed for Payrament</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

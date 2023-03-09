@@ -1,0 +1,142 @@
+<%- include('Customer header.ejs') %>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-8 offset-sm-2" style="border: 1px solid gray;">
+            <h1 style="background-color:black; color:white; text-align: center; padding: 10px; border-radius: 10px; margin-top: 5px;">Register Now</h1>
+            <form action="/New_user" method="post">
+                <div class="mb-3">
+                    <label class="form-label">Name</label>
+                    <input type="text" required name="name" placeholder="Enter Your Name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Mobile No.</label>
+                    <input type="number" required name="mobile" placeholder="Enter Your Mobile No." class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">State</label>
+                    <select required name="state" class="form-control">
+                        <option value="" selected disabled>Select Your State</option>
+                        <option>Haryana</option>
+                        <option>Punjab</option>
+                        <option>Himachal Pradesh</option>
+                        <option>Delhi</option>
+                        <option>Jammu & Kashmir</option>
+                        <option>Karnataka</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Gender</label> <br>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" required type="radio" name="gender" id="inlineRadio1" value="Male">
+                        <label class="form-check-label" for="inlineRadio1">Male</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="gender" id="inlineRadio2" value="Female">
+                        <label class="form-check-label" for="inlineRadio2">Female</label>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">e-mail address</label>
+                    <input type="email" name="email" required placeholder="Enter Your e-mail ID" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <div id="emailHelp" class="form-text">We'll never share your e-mail with anyone else</div>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Password</label>
+                    <input type="password" name="password" required class="form-control" id="exampleInputPassword1">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Address</label>
+                    <textarea required name="address" class="form-control"></textarea>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Signup Now</button>
+                </div>
+                <div class="text-center" style="margin-bottom: 10px; margin-top: 2px;">
+                    <a href="../" class="btn btn-primary">Already have an Account?</a>
+                </div>
+            </form>
+            <% if(result_001){ %>
+                <script>
+                    alert('Signup succesful');
+                    window.location='../';
+                </script>
+            <% } %>
+        </div>
+    </div>
+</div>
+<!--    <form action="" method="post">
+            <div>
+                <h1>My personal details</h1>
+                    <h2>Security details</h2>
+                        <div>Login ID</div>
+                        <div><input type="text" name="login" placeholder="Login name" required></div><br>
+                        <div>Secret code</div>
+                            <div><input type="password" name="secret" placeholder="Secure value" required></div><br>
+                        <div>Hint</div>
+                            <div><input type="text" name="hint" placeholder="Optional"></div><br>
+            </div>
+                <br><br><br>
+            <div>
+                <h2>General identification</h2>
+                <fieldset>
+                    <div>First Name</div>
+                        <div>
+                            <select name="prefix">
+                                <optgroup label="Male">
+                                    <option value="mr">Mr.</option>
+                                    <option value="sh">Sh.</option>
+                                    <option value="kr">Kr.</option>
+                                </optgroup>
+                                <optgroup label="Female">
+                                    <option value="ms">Ms.</option>
+                                    <option value="mrs">Mrs.</option>
+                                    <option value="smt">Smt.</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                        <div>
+                            <input type="text" name="firstname" placeholder="First name" required>
+                        </div><br>
+                        <div>Middle Name</div>
+                        <div>
+                            <input type="text" name="middlename" placeholder="Middle name">
+                        </div><br>
+                        <div>Last Name</div>
+                        <div>
+                            <input type="text" name="lastname" placeholder="Last name">
+                        </div><br>
+                    </div>
+                </fieldset>
+                Date of Birth               <input type="date" name="dob"><br>
+                e-mail ID                   <input type="email" name="emailid" placeholder="abc@xyz.com"><br>
+                About me                    <textarea name="about" cols="30" rows="10"></textarea><br>
+                Features (for females)      <textarea name="about" cols="30" rows="10" disabled></textarea><br>
+                Age                         <input type="number" name="age" min="18" max="60"><br>
+                Experience (years)          <input type="range" name="exp" min="0" max="10"><br>
+                Current time                <input type="time" name="watch"><br><br><br>
+            <fieldset>
+                    <legend align="center"><h2>Address/Location details</h2></legend>
+                House No.       <input type="text" name="houseno" placeholder="House no."><br>
+                Locality/Area   <input type="text" name="area" placeholder="Locality"><br>
+                City            Patiala<input type="radio" name="city"><br>
+                                Chandigarh<input type="radio" name="city"><br>
+                                Mohali<input type="radio" name="city"><br><br><br>
+                Hobbies         Video games<input type="checkbox" name="videogame"><br>
+                                Movies<input type="checkbox" name="movie"><br>
+                                Reading<input type="checkbox" name="read"><br>
+                                Table tennis<input type="checkbox" name="tt"><br>
+                                Volleyball<input type="checkbox" name="volley"><br><br><br>
+                ID Proof        <input type="file" name="id"><br><br><br>
+            </fieldset>
+                Preferred locations         <select name="location" size="3" multiple>
+                    <option value="panchkula">Panchkula</option>
+                    <option value="pinjore">Pinjore</option>
+                    <option value="kalka">Kalka</option>
+                    <option value="parwanoo">Parwanoo</option>
+                    <option value="zirakpur">Zirakpur</option>
+                    <option value="patiala">Patiala</option>
+                    </select><br><br><br>
+            <input type="submit">   <button type="button">Useless</button>  <input type="reset">
+        </form> -->
+    </body>
+</html>
