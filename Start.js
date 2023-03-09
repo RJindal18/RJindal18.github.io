@@ -3,7 +3,7 @@ const myRouter=require('./Route')
 const app=express()
 const cookieParser=require("cookie-parser");
 const sessions=require('express-session');
-const port=1234
+const port=3000
 const oneDay=1000 * 60 * 60 * 24; //Not important to be used
 app.set('view engine','ejs')
 app.use('/Public',express.static(__dirname+'/Public'))
@@ -74,7 +74,7 @@ app.use('/Payment_details/:OrderingID',myRouter)
 app.use('/Customer_order_request',myRouter)
 app.use('/Admin_Password_change',myRouter)
 app.use('/Update_item/:OrdID',myRouter)
-app.listen(80,()=>
+app.listen(3000,()=>
 {
-    console.log(`https://plum-glorious-tick.cyclic.app/`)
+    console.log(`localhost:${port}`)
 })
