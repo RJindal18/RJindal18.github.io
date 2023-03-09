@@ -74,7 +74,7 @@ app.use('/Payment_details/:OrderingID',myRouter)
 app.use('/Customer_order_request',myRouter)
 app.use('/Admin_Password_change',myRouter)
 app.use('/Update_item/:OrdID',myRouter)
-app.listen(port,()=>
+app.listen(80,()=>
 {
-    console.log(`http://localhost:${port}`)
+    console.log(`https://plum-glorious-tick.cyclic.app/`)
 })
