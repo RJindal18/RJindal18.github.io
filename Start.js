@@ -3,7 +3,7 @@ const myRouter=require('./Route')
 const app=express()
 const cookieParser=require("cookie-parser");
 const sessions=require('express-session');
-const port=3000
+const port=process.env.PORT || 3000
 const oneDay=1000 * 60 * 60 * 24; //Not important to be used
 app.set('view engine','ejs')
 app.use('/Public',express.static(__dirname+'/Public'))
