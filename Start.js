@@ -6,7 +6,7 @@ const sessions=require('express-session');
 const port=process.env.PORT || 3000
 const oneDay=1000 * 60 * 60 * 24; //Not important to be used
 app.set('view engine','ejs')
-app.use('/Public',express.static(__dirname+'/Public'))
+app.use(express.static('Public'))
 app.use('/Assets',express.static(__dirname+'/Assets'))
 app.use(sessions({ //Found on searching for 'Session in node' and using 'Section.io' website as the source
     secret: "AnyRandomValue",
